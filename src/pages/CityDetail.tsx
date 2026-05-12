@@ -48,8 +48,62 @@ export default function CityDetail() {
     );
   }
 
+  // Statik hizmet fallback'i (DB boşsa bile tüm hizmetleri göster)
+  const staticServices = [
+    { id: 1, name: "Halı Saha Yapımı", slug: "hali-saha-yapimi", shortDescription: "Profesyonel halı saha yapımı. FIFA standartlarında 55mm suni çim, çelik konstrüksiyon, LED aydınlatma." },
+    { id: 2, name: "Kapalı Halı Saha Yapımı", slug: "kapali-hali-saha-yapimi", shortDescription: "Branda veya sandwich panel kapalı halı saha yapımı. 4 mevsim kullanım imkanı." },
+    { id: 3, name: "Açık Halı Saha Yapımı", slug: "acik-hali-saha-yapimi", shortDescription: "Açık halı saha yapımı. Ekonomik ve hızlı çözüm. 20x40m, 25x45m, 30x50m ölçüler." },
+    { id: 4, name: "Basketbol Sahası Yapımı", slug: "basketbol-sahasi-yapimi", shortDescription: "Profesyonel basketbol sahası yapımı. Akrilik zemin, TBF standartlarında pota sistemleri." },
+    { id: 5, name: "Tenis Kortu Yapımı", slug: "tenis-kortu-yapimi", shortDescription: "Akrilik ve çim tenis kortu yapımı. ITF standartlarında, profesyonel zemin kaplama." },
+    { id: 6, name: "Voleybol Sahası Yapımı", slug: "voleybol-sahasi-yapimi", shortDescription: "Profesyonel voleybol sahası yapımı. FIVB standartlarında zemin ve direk sistemleri." },
+    { id: 7, name: "Çok Amaçlı Saha Yapımı", slug: "cok-amacli-saha-yapimi", shortDescription: "Basketbol, voleybol ve tenis için çok amaçlı spor sahası yapımı." },
+    { id: 8, name: "Nizami Futbol Sahası Yapımı", slug: "nizami-futbol-sahasi-yapimi", shortDescription: "Nizami futbol sahası ve tribün yapımı. FIFA standartlarında, 100x70m ölçüler." },
+    { id: 9, name: "Çelik Konstrüksiyon", slug: "celik-konstruksiyon", shortDescription: "Kapalı saha, hangar ve depo çelik konstrüksiyon yapımı. Dayanıklı ve ekonomik." },
+    { id: 10, name: "Akrilik Zemin Kaplama", slug: "akrilik-zemin-kaplama", shortDescription: "Akrilik zemin kaplama uygulaması. Basketbol, tenis ve voleybol sahaları için ideal." },
+    { id: 11, name: "Halı Saha Branda", slug: "hali-saha-branda", shortDescription: "Halı saha branda kaplama ve tamiri. 650gr/m2 PVC branda, UV dayanımlı." },
+    { id: 12, name: "Suni Çim Saha Kaplama", slug: "suni-cim-saha-kaplama", shortDescription: "55mm sentetik suni çim saha kaplama. FIFA onaylı, 7 yıl garanti." },
+    { id: 13, name: "Halı Saha Halısı Satışı", slug: "hali-saha-halisi", shortDescription: "55mm suni çim halı saha halısı satışı. Ten Cate, FIFA standartlarında." },
+    { id: 14, name: "55mm Sentetik Suni Çim Fiyatı", slug: "55mm-suni-cim-fiyati", shortDescription: "55mm sentetik suni çim m2 fiyatları. En kaliteli ürünler, uygun fiyatlar." },
+    { id: 15, name: "Suni Çim Satan Firmalar", slug: "suni-cim-satan-firmalar", shortDescription: "Suni çim satan firmalar arasında en kaliteli ürünleri en uygun fiyata sunuyoruz." },
+    { id: 16, name: "Yapay Çim Satan Yerler", slug: "yapay-cim-satan-yerler", shortDescription: "Yapay çim satan yerler arasında en kaliteli ürün ve hizmet garantisi." },
+    { id: 17, name: "Halı Saha Yapım Maliyeti", slug: "hali-saha-maliyeti", shortDescription: "2026 güncel halı saha yapım maliyeti. m2 başına fiyatlar ve maliyet hesaplama." },
+    { id: 18, name: "Açık Halı Saha Maliyeti", slug: "acik-hali-saha-maliyeti", shortDescription: "Açık halı saha yapım maliyeti. Ölçüye göre detaylı fiyatlandırma." },
+    { id: 19, name: "Kapalı Halı Saha Maliyeti", slug: "kapali-hali-saha-maliyeti", shortDescription: "Kapalı halı saha yapım maliyeti. Branda ve sandwich panel seçenekleri." },
+    { id: 20, name: "Halı Saha Yapan Firmalar", slug: "hali-saha-yapan-firmalar", shortDescription: "Halı saha yapan firmalar arasında 30 yıllık tecrübemizle öne çıkıyoruz." },
+    { id: 21, name: "Kapalı Halı Saha Yapan Firmalar", slug: "kapali-hali-saha-yapan-firmalar", shortDescription: "Kapalı halı saha yapan firmalar arasında lider konumdayız." },
+    { id: 22, name: "Açık Halı Saha Yapan Firmalar", slug: "acik-hali-saha-yapan-firmalar", shortDescription: "Açık halı saha yapan firmalar arasında en kaliteli hizmeti sunuyoruz." },
+    { id: 23, name: "Çok Amaçlı Saha Yapan Firmalar", slug: "cok-amacli-saha-yapan-firmalar", shortDescription: "Çok amaçlı saha yapan firmalar arasında profesyonel çözümler." },
+    { id: 24, name: "Voleybol Sahası Yapan Firmalar", slug: "voleybol-sahasi-yapan-firmalar", shortDescription: "Voleybol sahası yapan firmalar arasında FIVB standartlarında hizmet." },
+    { id: 25, name: "Tenis Kortu Yapan Firmalar", slug: "tenis-kortu-yapan-firmalar", shortDescription: "Tenis kortu yapan firmalar arasında ITF standartlarında kalite." },
+    { id: 26, name: "Balon Saha Yapan Firmalar", slug: "balon-saha-yapan-firmalar", shortDescription: "Balon saha yapan firmalar arasında hızlı ve ekonomik çözümler." },
+    { id: 27, name: "Nizami Saha Yapan Firmalar", slug: "nizami-saha-yapan-firmalar", shortDescription: "Nizami futbol sahası yapan firmalar arasında FIFA standartlarında hizmet." },
+    { id: 28, name: "Halı Saha Granül Satan Firmalar", slug: "hali-saha-granul-satan-firmalar", shortDescription: "SBR ve EPDM granül satışı. Halı saha zemin dolgu malzemesi." },
+    { id: 29, name: "Granül Satan Firmalar", slug: "granul-satan-firmalar", shortDescription: "EPDM ve SBR kauçuk granül satan firmalar. Spor sahaları için ideal." },
+    { id: 30, name: "Halı Saha Tavan Filesi", slug: "hali-saha-tavan-filesi", shortDescription: "Halı saha tavan filesi m2 fiyatları. Paraşüt ipi, UV dayanımlı." },
+    { id: 31, name: "Halı Saha Filesi Satan Firmalar", slug: "hali-saha-filesi-satan-firmalar", shortDescription: "Halı saha filesi satan firmalar. Tavan, yan ve kale filesi." },
+    { id: 32, name: "Halı Saha Tamiri", slug: "hali-saha-tamiri", shortDescription: "Halı saha tamiri ve bakım hizmetleri. Zemin düzeltme, çim yenileme." },
+    { id: 33, name: "Halı Saha Branda Tamiri", slug: "hali-saha-branda-tamiri", shortDescription: "Halı saha branda tamiri ve değişimi. Yırtık tespiti ve onarım." },
+    { id: 34, name: "Suni Çim Tamiri", slug: "suni-cim-tamiri", shortDescription: "Suni çim tamiri ve yenileme hizmetleri. Yıpranmış çim değişimi." },
+    { id: 35, name: "Halı Saha Tel Örgü", slug: "hali-saha-tel-orgu", shortDescription: "Halı saha tel örgü satan firmalar. Galvanizli PVC kaplı tel örgü." },
+    { id: 36, name: "Pota Satan Firmalar", slug: "pota-satan-firmalar", shortDescription: "Basketbol potası satan firmalar. TBF onaylı, paslanmaz çelik." },
+    { id: 37, name: "Tartan Zemin Kaplama", slug: "tartan-zemin-kaplama", shortDescription: "Tartan zemin kaplama yapan firmalar. EPDM kaplamalı spor zeminleri." },
+    { id: 38, name: "Padel Kortu Yapımı", slug: "padel-kortu-yapimi", shortDescription: "Padel kortu yapımı. Cam duvar sistemli, profesyonel padel sahaları." },
+    { id: 39, name: "Atletizm Pisti Yapımı", slug: "atletizm-pisti-yapimi", shortDescription: "Atletizm pisti yapımı. IAAF standartlarında, tartan zemin." },
+    { id: 40, name: "Havuz Yapımı", slug: "havuz-yapimi", shortDescription: "Olimpik yüzme havuzu yapımı. Betonarme ve prefabrik seçenekler." },
+    { id: 41, name: "Hibrit Çim Saha Yapımı", slug: "hibrit-cim-saha-yapimi", shortDescription: "Hibrit çim saha yapımı. Doğal çim + suni çim karışımı. FIFA standartlarında." },
+    { id: 42, name: "Yedek Kulübesi", slug: "yedek-kulubesi", shortDescription: "Spor sahası yedek kulübesi. Polikarbonat ve akrilik malzeme." },
+    { id: 43, name: "Spor Zemin Kaplama", slug: "spor-zemin-kaplama", shortDescription: "Profesyonel spor zemin kaplama hizmetleri. Her türlü spor için." },
+    { id: 44, name: "Basketbol Potaları", slug: "basketbol-potalari", shortDescription: "Profesyonel basketbol potası. TBF onaylı, paslanmaz çelik." },
+    { id: 45, name: "Voleybol ve Tenis Direkleri", slug: "voleybol-tenis-direkleri", shortDescription: "Voleybol ve tenis direkleri. Çelik direk, profesyonel file sistemi." },
+    { id: 46, name: "Futbol Kaleleri", slug: "futbol-kaleleri", shortDescription: "Futbol kalesi ve filesi. Profesyonel standartlarda." },
+    { id: 47, name: "Tribün Koltukları", slug: "tribun-koltuklari", shortDescription: "Plastik tribün koltuğu. Dayanıklı, ergonomik, renk seçenekleri." },
+    { id: 48, name: "Halı Saha Skorbord", slug: "hali-saha-skorbord", shortDescription: "Halı saha elektronik skorbord. LED ekran, kumandalı." },
+    { id: 49, name: "Halı Saha Aydınlatma", slug: "hali-saha-aydinlatma", shortDescription: "Halı saha LED aydınlatma sistemi. 200W projektör, homojen ışık." },
+    { id: 50, name: "Prefabrik Konteyner", slug: "prefabrik-konteyner", shortDescription: "Prefabrik konteyner ve çelik ev yapımı. Hızlı kurulum, ekonomik." },
+  ];
+
   const cityName = city?.name || citySlug.charAt(0).toUpperCase() + citySlug.slice(1);
-  const servicesList = allServices || [];
+  const servicesList = (allServices && allServices.length > 0) ? allServices : staticServices;
   const reviews = cityReviews && cityReviews.length > 0 ? cityReviews : [];
   const faqs = cityFaqs && cityFaqs.length > 0 ? cityFaqs : [];
 

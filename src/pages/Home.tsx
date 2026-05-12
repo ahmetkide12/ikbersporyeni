@@ -5,6 +5,7 @@ import MetaTags from "@/components/seo/MetaTags";
 import {
   LocalBusinessSchema,
   FAQSchema,
+  OrganizationSchema,
 } from "@/components/seo/SchemaMarkup";
 import {
   Phone,
@@ -157,6 +158,7 @@ export default function Home() {
         description="Türkiye'nin her yerinde anahtar teslim halı saha, basketbol sahası, tenis kortu ve çok amaçlı spor sahaları yapımı. 30+ yıl tecrübe, MYK belgeli ekip, TSE/CE sertifikalı malzeme."
         keywords="halı saha yapımı, kapalı halı saha, açık halı saha, basketbol sahası, tenis kortu, voleybol sahası, çok amaçlı saha, spor sahası yapımı, suni çim, İkber Spor"
       />
+      <OrganizationSchema />
       <LocalBusinessSchema />
       <FAQSchema faqs={faqData.map((f) => ({ question: f.q, answer: f.a }))} />
 

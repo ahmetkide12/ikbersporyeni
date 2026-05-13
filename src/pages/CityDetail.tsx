@@ -267,10 +267,39 @@ export default function CityDetail() {
       )}
 
       {/* ─── FAQ ACCORDION (15) ─── */}
-      <FAQAccordion cityName={cityName} />
+      <FAQAccordion
+        cityName={cityName}
+        additionalFaqs={
+          faqs.length > 0
+            ? faqs.slice(0, 15).map((f: any) => ({
+                question: f.question,
+                answer: f.answer,
+                category: f.category || "genel",
+              }))
+            : undefined
+        }
+      />
 
       {/* ─── REVIEW SLIDER (15) ─── */}
-      <ReviewSlider cityName={cityName} />
+      <ReviewSlider
+        cityName={cityName}
+        reviews={
+          reviews.length > 0
+            ? reviews.slice(0, 15).map((r: any) => ({
+                author: r.customerName,
+                city: r.customerLocation || cityName,
+                district: r.district,
+                rating: r.rating || 5,
+                reviewBody: r.reviewText || "Çok profesyonel bir hizmet aldım.",
+                serviceName: r.serviceType || "Spor Sahası Yapımı",
+                datePublished: r.createdAt
+                  ? new Date(r.createdAt).toISOString().split("T")[0]
+                  : "2026-01-01",
+                verified: r.isApproved || true,
+              }))
+            : undefined
+        }
+      />
 
       {/* ─── NEARBY CITIES (İç Link Grid) ─── */}
       <section className="py-12 bg-white" aria-label="Yakın Şehirler">
